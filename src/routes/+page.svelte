@@ -5,7 +5,7 @@
 <div class="grid h-screen place-items-center">
 	<div>
 		<div class="flex items-center justify-center">
-			<h1 class="text-2xl my-8">Eschatology Records Is Undergoing A Full Rebuild</h1>
+			<h1 class="text-2xl text-center my-8">Eschatology Records Is Undergoing A Full Rebuild</h1>
 		</div>
 		<div class="flex justify-center">
 			<div>
