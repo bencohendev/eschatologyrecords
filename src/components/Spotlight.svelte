@@ -3,45 +3,45 @@
 
 	let el: HTMLDivElement;
 
-	let left = '0%';
-	let top = '60%';
-	let leftMax = 100;
-	let topMax = 100;
+	let left = '80%';
+	let top = '10%';
+	let leftMax = 70;
+	let topMax = 80;
 	let min = 1;
 
-	let box = '350px -200px 133px 0px rgba(0, 0, 0, 0.75)';
+	let box = '0px -300px 133px 0px rgba(0, 0, 0, 0.75)';
 
-	// const spotlightPositionInterval = setInterval(() => {
-	// 	const rightPos = getRandomNumber(min, leftMax);
-	// 	const topPos = getRandomNumber(min, topMax);
-	// 	left = `${rightPos}%`;
-	// 	top = `${topPos}%`;
-	// }, 5000);
+	const spotlightPositionInterval = setInterval(() => {
+		const rightPos = getRandomNumber(min, leftMax);
+		const topPos = getRandomNumber(min, topMax);
+		left = `${rightPos}%`;
+		top = `${topPos}%`;
+	}, 1000);
 
-	// const elPosInterval = setInterval(() => {
-	// 	if (el) {
-	// 		triggerShadowChange(el.getBoundingClientRect());
-	// 	}
-	// }, 100);
+	const elPosInterval = setInterval(() => {
+		if (el) {
+			triggerShadowChange(el.getBoundingClientRect());
+		}
+	}, 10);
 
-	const triggerShadowChange = (bound: any) => {
-		const { x, y, bottom, left, right, top, height, width } = bound;
+	const triggerShadowChange = (bound: { left: number; top: number; width: number }) => {
+		const { left, top, width } = bound;
 		const percentLeft = Math.round(Math.floor(((left + width / 2) / window.innerWidth) * 100));
-		const percentTop = Math.round(Math.floor((top + height / 2 / window.innerHeight) * 100));
-		console.log(
-			'🚀 ~ file: Spotlight.svelte:32 ~ triggerShadowChange ~ scrollPercent:',
-			percentLeft
-		);
+		const percentTop = Math.round(Math.floor((top / window.innerHeight) * 100));
+		let boxX = percentLeft === 50 ? 0 : 700 * ((percentLeft - 50) / 100) * -1;
+		let boxY = percentTop === 50 ? 0 : 1000 * ((percentTop - 50) / 100) * -1;
+
+		box = `${boxX}px ${boxY}px 133px 0px rgba(0, 0, 0, 0.75)`;
 	};
 
 	const getRandomNumber = (min: number, max: number): number => {
 		return Math.floor(Math.random() * (max - min + 1) + min);
 	};
 
-	// onDestroy(() => {
-	// 	clearInterval(spotlightPositionInterval);
-	// 	clearInterval(elPosInterval);
-	// });
+	onDestroy(() => {
+		clearInterval(spotlightPositionInterval);
+		clearInterval(elPosInterval);
+	});
 
 	$: {
 		if (el) {
