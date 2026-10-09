@@ -20,7 +20,7 @@
 >
 	<!-- <div class="spotlight w-full h-full" /> -->
 	<div class="flex items-stretch spotlight">
-		<div class="spotlight w-full" />
+		<div class="spotlight w-full"></div>
 		<img class="bg-transparent" src="./logo_midgreen_spotlight.png" alt="spotlight" />
 	</div>
 </div>
